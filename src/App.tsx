@@ -1,13 +1,14 @@
 import React from 'react';
-import { createMonth } from './utils/data/createMonth';
+import { createYear } from './utils/data/createYear';
+import { Calendar } from './components/Calendar/Calendar';
 
 const App:React.FC = () => {
-  const test = createMonth();
-  console.log(test.createMonthDays());
+  const test = createYear();
+  console.log(test.createYearMonthes());
   console.log(new Date(2024, 2, 16))
   return (
     <div className="App">
-      {test.year}
+      <Calendar />
     </div>
   );
 }
