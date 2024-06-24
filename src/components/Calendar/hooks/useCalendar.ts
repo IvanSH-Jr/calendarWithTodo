@@ -11,5 +11,10 @@ export const useCalendar = ({ locale, selectedDate: date }: UseCalendarParams) =
 
   const [selectedDate, setSelectedDay] = React.useState(createDate({ date }));
 
-  const [selectedMonath, setSelectedMonth] = React.useState(createMonth({ date }));
+  const [selectedMonath, setSelectedMonth] = React
+    .useState(createMonth({ date: new Date(selectedDate.year, selectedDate.monthIndex), locale }));
+
+  const [selectedYear, setSelectedYear] = React.useState(selectedDate.year);
+
+  const monthesNames = React.useMemo(() => )
 };
