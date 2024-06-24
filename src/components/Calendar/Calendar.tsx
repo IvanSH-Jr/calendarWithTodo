@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCalendar } from './hooks/useCalendar';
 
 interface CalendarProps {
   locale?: string;
@@ -6,6 +7,7 @@ interface CalendarProps {
   selectDate: (date: Date) => void;
 };
 
-export const Calendar: React.FC<CalendarProps> = () => {
+export const Calendar: React.FC<CalendarProps> = ({ locale, selectDate, selectedDate }) => {
+  const {} = useCalendar({locale, selectedDate})
   return <div>Calendar</div>
 };

@@ -1,14 +1,13 @@
 import React from 'react';
-import { createYear } from './utils/data';
-// import { Calendar } from './components/Calendar/Calendar';
+import { getMonthesNames } from './utils/data';
+import { Calendar } from './components/Calendar/Calendar';
 
 const App:React.FC = () => {
-  const test = createYear();
-  console.log(test.createYearMonthes());
-  console.log(new Date(2024, 2, 16))
+  const [selectedDate, selectDate] = React.useState(new Date());
+  console.log(getMonthesNames())
   return (
     <div className="App">
-     
+     <Calendar selectDate={selectDate} selectedDate={selectedDate} locale='ru'/>
     </div>
   );
 }
