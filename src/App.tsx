@@ -7,7 +7,7 @@ const App:React.FC = () => {
   const [selectedDate, selectDate] = React.useState(new Date());
   return (
     <div className='app__container'>
-      <div>{formatDate(selectedDate, 'DD MM YYY')}</div>
+      <div className='date__container'>{formatDate(selectedDate, 'DD MM YYY')}</div>
      <Calendar selectDate={selectDate} selectedDate={selectedDate} locale='ru'/>
     </div>
   );
