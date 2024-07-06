@@ -71,3 +71,27 @@
 .calendar__day:hover {
   background-color: var(--color-additional7);
 }
+
+.calendar__additional__day {
+  padding: 5.5px;
+  font-weight: 300;
+  cursor: pointer;
+  color: var(--color-placeholder);
+}
+
+.calendar__pick__item {
+  padding: 9px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.calendar__pick__item:hover {
+  background-color: var(--color-additional7);
+}
+
+.calendar__today__item {
+  background-color: var(--background-color-calendar-header);
+}

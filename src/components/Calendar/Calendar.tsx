@@ -42,6 +42,17 @@ export const Calendar: React.FC<CalendarProps> = ({ locale, selectDate, selected
               <div key={weekDaysName.dayShort}>{weekDaysName.dayShort}</div>
             ))}
           </div>
+          <div className='calendar__days'>
+            {
+              state.calendarDays.map((day) => {
+                return (
+                  <div className='calendar__day' key={`${day.dayNumber} - ${day.monthIndex}`}>
+                    {day.dayNumber}
+                  </div>
+                )
+              })
+            }
+          </div>
         </>
       )}
     </div>
