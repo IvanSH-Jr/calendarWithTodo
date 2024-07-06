@@ -1,4 +1,5 @@
 import React from 'react';
+import { checkDateIsEqual, checkIsToday } from '../../utils/data';
 import { useCalendar } from './hooks/useCalendar';
 
 import './Calendar.css';
@@ -45,6 +46,10 @@ export const Calendar: React.FC<CalendarProps> = ({ locale, selectDate, selected
           <div className='calendar__days'>
             {
               state.calendarDays.map((day) => {
+                const isToday = checkIsToday(day.date);
+                const isSelectedDay = checkDateIsEqual(day.date, state.selectedDay.date);
+                const isAdditionalDay = day.monthIndex !== state.selectedMonth.monthIndex; 
+
                 return (
                   <div className='calendar__day' key={`${day.dayNumber} - ${day.monthIndex}`}>
                     {day.dayNumber}
