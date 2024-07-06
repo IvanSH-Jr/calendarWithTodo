@@ -51,7 +51,20 @@ export const Calendar: React.FC<CalendarProps> = ({ locale, selectDate, selected
                 const isAdditionalDay = day.monthIndex !== state.selectedMonth.monthIndex; 
 
                 return (
-                  <div className='calendar__day' key={`${day.dayNumber} - ${day.monthIndex}`}>
+                  <div
+                    aria-hidden
+                    key={`${day.dayNumber} - ${day.monthIndex}`}
+                    className={[
+                      'calendar__day',
+                      isToday ? 'calendar__today__item' : '',
+                      isSelectedDay ? 'calendar__selected__item' : '',
+                      isAdditionalDay ? 'calendar__additional__day' : ''
+                    ].join(' ')}
+                    onClick={() => {
+                      functions.setSelectedDay(day);
+                      selectDate(day.date)
+                    }}
+                  >
                     {day.dayNumber}
                   </div>
                 )
