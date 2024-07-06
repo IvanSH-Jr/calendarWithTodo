@@ -16,7 +16,11 @@ export const Calendar: React.FC<CalendarProps> = ({ locale, selectDate, selected
   return (
   <div className='calendar'>
     <div className='calendar__header'>
-      <div aria-hidden className='calendar__header__arrow__left' />
+      <div
+        aria-hidden
+        className='calendar__header__arrow__left'
+        onClick={() => functions.onClickArrow('left')}
+      />
       {state.mode === 'days' && (
         <div aria-hidden onClick={() => functions.setMode('monthes')}>
           {state.monthesNames[state.selectedMonth.monthIndex].month} {state.selectedYear}
@@ -33,7 +37,11 @@ export const Calendar: React.FC<CalendarProps> = ({ locale, selectDate, selected
           {state.selectedYearsInterval[state.selectedYearsInterval.length - 1]}
         </div>
       )}      
-      <div aria-hidden className='calendar__header__arrow__right' />
+      <div
+        aria-hidden
+        className='calendar__header__arrow__right'
+        onClick={() => functions.onClickArrow('right')}
+      />
     </div>
     <div className='calendar__body'>
       {state.mode === 'days' && (

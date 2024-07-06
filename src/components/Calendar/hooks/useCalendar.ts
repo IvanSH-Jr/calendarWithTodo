@@ -33,7 +33,7 @@ export const useCalendar = ({ firstWeekDay = 2, locale = 'default', selectedDate
   const weekDaysNames = React.useMemo(() => getWeekDaysNames(firstWeekDay, locale), [firstWeekDay, locale]);
   const days = React.useMemo(() => selectedMonth.createMonthDays(), [selectedMonth]);
   const calendarDays = React.useMemo(() => {
-    const monthNumberOfDays = getDaysByMonth(selectedDay.monthIndex, selectedYear);
+    const monthNumberOfDays = getDaysByMonth(selectedMonth.monthIndex, selectedYear);
 
     const prevMonthDays = createMonth({
       date: new Date(selectedYear, selectedMonth.monthIndex - 1),
@@ -71,12 +71,9 @@ export const useCalendar = ({ firstWeekDay = 2, locale = 'default', selectedDate
     for (let i = numberOfPrevDays; i < totalCalendarDays - numberOfNextDays; i += 1) {
       result[i] = days[i - numberOfPrevDays];
     }
-    console.log(nextMonthDays)
-    console.log(totalCalendarDays)
+
     for (let i = totalCalendarDays - numberOfNextDays; i < totalCalendarDays; i += 1) {
-      console.log('dddd')
       result[i] = nextMonthDays[i - totalCalendarDays + numberOfNextDays];
-      
     }
     return result;
   },
@@ -86,6 +83,48 @@ export const useCalendar = ({ firstWeekDay = 2, locale = 'default', selectedDate
     selectedYear
   ]);
   
+  const onClickArrow = (direction: 'right' | 'left') => {
+    if (mode === 'years' && direction === 'left') {
+      return setSelectedYearsInterval(getYearsInterval(selectedYearsInterval[0] - 10));
+    }
+
+    if (mode === 'years' && direction === 'right') {
+      return setSelectedYearsInterval(getYearsInterval(selectedYearsInterval[0] + 10));
+    }
+
+    if (mode === 'monthes' && direction === 'left') {
+      const year = selectedYear - 1;
+      if (!selectedYearsInterval.includes(year)) setSelectedYearsInterval(getYearsInterval(year));
+      return setSelectedYear(selectedYear - 1);
+    }
+
+    if (mode === 'monthes' && direction === 'right') {
+      const year = selectedYear + 1;
+      if (!selectedYearsInterval.includes(year)) setSelectedYearsInterval(getYearsInterval(year));
+      return setSelectedYear(selectedYear + 1);
+    }
+
+    if (mode === 'days') {
+      const monthIndex =
+        direction === 'left' ? selectedMonth.monthIndex - 1 : selectedMonth.monthIndex + 1;
+      if (monthIndex === -1) {
+        const year = selectedYear - 1;
+        setSelectedYear(year);
+        if (!selectedYearsInterval.includes(year)) setSelectedYearsInterval(getYearsInterval(year));
+        return setSelectedMonth(createMonth({ date: new Date(selectedYear - 1, 11), locale }));
+      }
+
+      if (monthIndex === 12) {
+        const year = selectedYear + 1;
+        setSelectedYear(year);
+        if (!selectedYearsInterval.includes(year)) setSelectedYearsInterval(getYearsInterval(year));
+        return setSelectedMonth(createMonth({ date: new Date(year, 0), locale }));
+      }
+
+      setSelectedMonth(createMonth({ date: new Date(selectedYear, monthIndex), locale }));
+    }
+  };
+
   return {
     state: {
       mode,
@@ -99,7 +138,8 @@ export const useCalendar = ({ firstWeekDay = 2, locale = 'default', selectedDate
     },
     functions: {
       setMode,
-      setSelectedDay
+      setSelectedDay,
+      onClickArrow,
     }
   };
 };
