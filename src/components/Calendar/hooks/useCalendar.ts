@@ -97,6 +97,8 @@ export const useCalendar = ({ firstWeekDay = 2, locale = 'default', selectedDate
       selectedYear,
       selectedYearsInterval
     },
-
+    functions: {
+      setMode
+    }
   };
 };
