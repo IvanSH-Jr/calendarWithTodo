@@ -10,7 +10,7 @@
 
 .date__container {
     background-color: var(--background-color-calendar);
-    font-size: 3pc;
+    font-size: 15px;
     color: var(--color-text);
     border-radius: 15px;
     padding: 5px 25px;

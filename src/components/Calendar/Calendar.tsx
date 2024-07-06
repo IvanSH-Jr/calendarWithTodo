@@ -34,6 +34,17 @@ export const Calendar: React.FC<CalendarProps> = ({ locale, selectDate, selected
       )}      
       <div aria-hidden className='calendar__header__arrow__right' />
     </div>
+    <div className='calendar__body'>
+      {state.mode === 'days' && (
+        <>
+          <div className='calendar__week__names'>
+            {state.weekDaysNames.map((weekDaysName) => (
+              <div key={weekDaysName.dayShort}>{weekDaysName.dayShort}</div>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
   </div>
   );
 };

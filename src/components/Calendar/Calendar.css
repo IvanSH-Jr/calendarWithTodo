@@ -31,3 +31,20 @@
   background-image: var(--images-arrow);
   transform: rotate(-180deg);
 }
+
+.calendar__body {
+  border-radius: 0 0 5px 5px;
+  padding: 5px;
+}
+
+.calendar__week__names {
+  height: 20px;
+  font-weight: 600;
+  font-size: 8px;
+  color: var(--color-additional);
+  text-align: center;
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px 1px;
+}
